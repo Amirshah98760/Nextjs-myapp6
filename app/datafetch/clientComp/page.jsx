@@ -3,6 +3,7 @@ import {useEffect, useState} from 'react'
 import { useSearchParams } from 'next/navigation'
 
 const clientComp = () => {
+    const [loading, setLoading] = useState(true);
     const [userInfo , setUserInfo] = useState({});
  const searchParams = useSearchParams();
  const name = searchParams.get("name");
@@ -11,16 +12,25 @@ const clientComp = () => {
 
  
 
-    useEffect(() => {
-           const dataFetch = async () => {
-        const res = await fetch(`https://api.genderize.io/?name=${name}`);
-        const data = await res.json();
-        console.log(data);
-        setUserInfo(data);
-    }
-        dataFetch();
-    }, []);
+    // useEffect(() => {
+    //        const dataFetch = async () => {
+    //     const res = await fetch(`https://api.genderize.io/?name=${name}`);
+    //     const data = await res.json();
+    //     console.log(data);
+    //     setUserInfo(data);
+    // }
+    //     dataFetch();
+    // }, []);
 
+
+  useEffect(() => {
+  const fetchData = async () => {
+    await new Promise((res) => setTimeout(res, 4000));
+    setLoading(false);
+  };
+
+  fetchData();
+}, []);
 
 
 

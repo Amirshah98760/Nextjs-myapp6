@@ -4,6 +4,7 @@ const serverDataFetch = async (props) => {
   const searchParams = await props.searchParams;
   const username = searchParams.name;
 
+ await new Promise((resolve) => setTimeout(resolve, 4000));
 
     if (!username) {
         return (
